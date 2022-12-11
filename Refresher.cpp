@@ -3,7 +3,12 @@
 #include <chrono>
 #include <Windows.h>
 using namespace std;
+
+// Declare the setcolor function
+void setcolor(int color);
+
 int main() {
+    setcolor(FOREGROUND_GREEN);
     cout << "Click CTRL+B to enable. CTRL+X to disable";
     while (1) {
         Sleep(1);
@@ -20,12 +25,18 @@ int main() {
             Sleep(100);
             if (GetAsyncKeyState(VK_LCONTROL) && GetAsyncKeyState(0x58)) {
                 enabler = false;
-              
+
             }
-            
-        
+
+
         }
-        
+
     }
- 
+
+}
+
+// Define the setcolor function
+void setcolor(int color) {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, color);
 }
